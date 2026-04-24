@@ -18,7 +18,7 @@ ID_EXCEL = "1XbQDQCIhT4rE3kJypoll61sICjuoH-xmfgOUs2lmq-k"
 
 # Inicializar la IA de Google con la API Key
 genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel('gemini-1.0-pro')
 
 # ===================== 3. FUNCIÓN DEL AGENTE IA ===============================
 def agente_ia(texto_sucio):
