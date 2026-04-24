@@ -7,7 +7,7 @@ import io
 import json
 
 # ------------------- 1. CONFIGURACIÓN INICIAL ----------------------------
-===========================================================================
+#===========================================================================
 GEMINI_API_KEY = "AIzaSyCVWNZQnZqSi_jlzmSJjSpUAQ7cQnttWDY" 
 # ID del Google Sheet de prueba (luego lo cambias por el de Carolina)
 ID_EXCEL = "1XbQDQCIhT4rE3kJypoll61sICjuoH-xmfgOUs2lmq-k"
