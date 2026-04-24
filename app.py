@@ -9,7 +9,9 @@ import json                         # Para leer credenciales en formato JSON
 
 # ===================== 2. CONFIGURACIÓN INICIAL ===============================
 # La API Key ya no se pone en el código, se guarda en st.secrets["gemini_api_key"]
-GEMINI_API_KEY = "AIzaSyCVWNZQnZqSi_jlzmSJjSpUAQ7cQnttWDY"
+# Leer la API Key desde secrets
+GEMINI_API_KEY = st.secrets["gemini_api_key"]
+# Configurar Gemini
 
 # ID del Google Sheet (este lo cambias por el de Carolina)
 ID_EXCEL = "1XbQDQCIhT4rE3kJypoll61sICjuoH-xmfgOUs2lmq-k"
