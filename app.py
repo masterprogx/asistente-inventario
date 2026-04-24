@@ -48,10 +48,7 @@ if st.button("🚀 Actualizar Google Sheet"):
             # --- 4. CONEXIÓN SEGURA A GOOGLE SHEETS ---
             # Leemos las credenciales desde los 'Secrets' de Streamlit para que sea automático
             creds_info = json.loads(st.secrets["gcp_service_account"])
-            scope = [
-                      "https://googleapis.com",
-                       "https://googleapis.com"
-                    ] #URLS CORTAS
+            scope = [ "https://spreadsheets.google.com/feeds",  "https://www.googleapis.com/auth/drive"] #URLS CORTAS
             creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_info, scope)
             client = gspread.authorize(creds)
             
