@@ -64,22 +64,19 @@ if st.button("Procesar mensaje"):
             # EJEMPLO DE ACTUALIZACIÓN EN GOOGLE SHEETS
             # (Aquí deberías parsear la respuesta y actualizar filas/columnas según tu lógica)
            # sheet.update_cell(1, 1, "Inventario actualizado correctamente")  # DEMO
-            # MOSTRAR RESPUESTA DE GEMINI
-            st.write("Respuesta de Gemini:")
-            st.write(response.text)
             try:
+                # PARSEAR RESPUESTA DE GEMINI COMO JSON
                 datos = json.loads(response.text)
                 for item in datos:
                     producto = item["producto"]
                     cantidad = item["cantidad"]
                     unidad = item["unidad"]
             
-            # ACTUALIZACIÓN EN GOOGLE SHEETS
-         #=================AQUI ESTA LA CLAVE DEL PROGRAMA ==================================
-         #===================================================================================
-            # Procesar cada línea del mensaje ingresado
-
-            
+                    # ACTUALIZACIÓN EN GOOGLE SHEETS
+                    #=================AQUI ESTA LA CLAVE DEL PROGRAMA ==================================
+                    #===================================================================================
+                    # Buscar fila por producto enla hoja
+       
                     # Buscar fila por producto en la hoja
                     try:
                         cell = sheet.find(producto)
@@ -89,10 +86,8 @@ if st.button("Procesar mensaje"):
                         sheet.update_cell(fila, 5, "Sin observación")    # Columna Observación
                     except:
                         st.write(f"⚠️ Producto {producto} no encontrado en la hoja.")
-
-         
-
-            st.success("Inventario actualizado correctamente ✅")
+               #Mensaje de éxito 
+               st.success("Inventario actualizado correctamente ✅")
   #=============================================================================================
         except Exception as e:
             st.error(f"Ocurrió un error: {e}")
