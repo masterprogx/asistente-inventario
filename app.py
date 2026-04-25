@@ -39,11 +39,11 @@ sheet = client_gsheets.open_by_key("1XbQDQCIhT4rE3kJypoll61sICjuoH-xmfgOUs2lmq-k
 st.title("Asistente de Inventario con Gemini")
 
 # CAMPO DE TEXTO PARA PEGAR EL MENSAJE DE PEDRO
-mensaje = st.text_area("Pega aquí el mensaje de Pedro:")
+mensaje = st.text_area("Pega aquí lod datos:")
 
 if st.button("Procesar mensaje"):
     if mensaje.strip() == "":
-        st.warning("Primero debes pegar el texto de Pedro...")
+        st.warning("Primero debes pegar el texto con los datos correctos...")
     else:
         try:
             # USAR GEMINI PARA PROCESAR EL MENSAJE
@@ -58,9 +58,35 @@ if st.button("Procesar mensaje"):
 
             # EJEMPLO DE ACTUALIZACIÓN EN GOOGLE SHEETS
             # (Aquí deberías parsear la respuesta y actualizar filas/columnas según tu lógica)
-            sheet.update_cell(1, 1, "Inventario actualizado correctamente")  # DEMO
+           # sheet.update_cell(1, 1, "Inventario actualizado correctamente")  # DEMO
+            # MOSTRAR RESPUESTA DE GEMINI
+            st.write("Respuesta de Gemini:")
+            st.write(response.text)
+            
+            # ACTUALIZACIÓN EN GOOGLE SHEETS
+         #=================AQUI ESTA LA CLAVE DEL PROGRAMA ==================================
+         #===================================================================================
+            # Procesar cada línea del mensaje ingresado
+            lineas = mensaje.split("\n")
+            for linea in lineas:
+                if "=" in linea:
+                    producto, valor = linea.split("=")
+                    producto = producto.strip()
+                    cantidad, unidad = valor.strip().split(" ")
+            
+                    # Buscar fila por producto en la hoja
+                    try:
+                        cell = sheet.find(producto)
+                        fila = cell.row
+                        sheet.update_cell(fila, 3, cantidad)             # Columna Cantidad
+                        sheet.update_cell(fila, 4, unidad)               # Columna Unidad
+                        sheet.update_cell(fila, 5, "Sin observación")    # Columna Observación
+                    except:
+                        st.write(f"⚠️ Producto {producto} no encontrado en la hoja.")
 
-            st.success("Inventario actualizado correctamente")
+         
 
+            st.success("Inventario actualizado correctamente ✅")
+  #=============================================================================================
         except Exception as e:
             st.error(f"Ocurrió un error: {e}")
