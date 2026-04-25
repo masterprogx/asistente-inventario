@@ -47,11 +47,13 @@ if st.button("Procesar mensaje"):
             response = client.models.generate_content(
                 model="models/gemini-2.5-flash",   # usa uno de los que viste en la lista
                 contents=f"""
-                        Extrae producto, cantidad y unidad de este inventario:
-                        {mensaje}
-                        Devuélvelo en formato JSON como una lista de objetos, cada uno con claves:
-                        producto, cantidad, unidad.
-                        """
+                    Devuelve únicamente un JSON válido en este formato:
+                    [
+                      {{"producto":"...", "cantidad":..., "unidad":"..."}}
+                    ]
+                    No escribas texto adicional.
+                    {mensaje}
+                            """
             )
 
             # MOSTRAR RESPUESTA DE GEMINI
@@ -66,9 +68,11 @@ if st.button("Procesar mensaje"):
                 #datos = json.loads(response.text)
                 # Obtener el JSON limpio desde Gemini
                 gemini_output = response.candidates[0].content.parts[0].text
-                st.write("Texto limpio de Gemini:")
+                st.write("Texto limpio de Gemini:") 
+                st.write(repr(gemini_output))  # para ver caracteres invisibles
                 st.write(gemini_output)
                 # Parsear como JSON
+                gemini_output = gemini_output.strip()   # elimina espacios/saltos
                 datos = json.loads(gemini_output)
                 for item in datos:
                     producto = item["producto"]
