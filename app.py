@@ -66,6 +66,8 @@ if st.button("Procesar mensaje"):
                 #datos = json.loads(response.text)
                 # Obtener el JSON limpio desde Gemini
                 gemini_output = response.candidates[0].content.parts[0].text
+                st.write("Texto limpio de Gemini:")
+                st.write(gemini_output)
                 # Parsear como JSON
                 datos = json.loads(gemini_output)
                 for item in datos:
