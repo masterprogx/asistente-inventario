@@ -71,7 +71,7 @@ if st.button("Procesar mensaje"):
                 gemini_output = gemini_output.strip()   # elimina espacios/saltos
                 # Si empieza con "json", lo quitamos
                 if gemini_output.lower().startswith("json"):
-                   gemini_output = gemini_output[4:].strip()
+                   gemini_output = gemini_output.replace("json\n", "", 1).strip()
                 st.write("Texto limpio de Gemini:") 
                 st.write(repr(gemini_output))  # para ver caracteres invisibles
                 st.write(gemini_output)
