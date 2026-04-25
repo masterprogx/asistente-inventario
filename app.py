@@ -14,7 +14,7 @@ client = genai.Client(api_key=api_key)   # CAMBIO: SE CREA EL CLIENTE CON LA API
 
 # DEBUG: listar modelos disponibles
 for m in client.models.list():
-    st.write(m.name, m.supported_generation_methods)
+    st.write(m.name)
 
 
 
