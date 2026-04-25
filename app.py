@@ -13,8 +13,8 @@ client = genai.Client(api_key=api_key)   # CAMBIO: SE CREA EL CLIENTE CON LA API
 #OBSERVACIONES
 
 # DEBUG: listar modelos disponibles
-for m in client.models.list():
-    st.write(m.name)
+#for m in client.models.list():
+ #   st.write(m.name)
 
 
 
@@ -49,9 +49,8 @@ if st.button("Procesar mensaje"):
             # USAR GEMINI PARA PROCESAR EL MENSAJE
             # CAMBIO: SE USA client.models.generate_content EN VEZ DE model.generate_content
             response = client.models.generate_content(
-                model="gemini-1.5-flash",   # CAMBIO: MODELOS NUEVOS DISPONIBLES
-                contents=mensaje
-            )
+            model="models/gemini-2.5-flash",   # usa uno de los que viste en la lista
+            contents=mensaje)  
 
             # MOSTRAR RESPUESTA DE GEMINI
             st.write("Respuesta de Gemini:")
