@@ -68,11 +68,15 @@ if st.button("Procesar mensaje"):
                 #datos = json.loads(response.text)
                 # Obtener el JSON limpio desde Gemini
                 gemini_output = response.candidates[0].content.parts[0].text
+                gemini_output = gemini_output.strip()   # elimina espacios/saltos
+                # Si empieza con "json", lo quitamos
+                if gemini_output.lower().startswith("json"):
+                   gemini_output = gemini_output[4:].strip()
                 st.write("Texto limpio de Gemini:") 
                 st.write(repr(gemini_output))  # para ver caracteres invisibles
                 st.write(gemini_output)
                 # Parsear como JSON
-                gemini_output = gemini_output.strip()   # elimina espacios/saltos
+                
                 datos = json.loads(gemini_output)
                 for item in datos:
                     producto = item["producto"]
