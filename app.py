@@ -39,7 +39,7 @@ if st.button("Procesar mensaje"):
         try:
             # USAR GEMINI PARA PROCESAR EL MENSAJE
             # CAMBIO: SE USA client.models.generate_content EN VEZ DE model.generate_content
-            response = client.generate_content(
+            response = client.models.generate_content(
                 model="gemini-1.5-flash",   # CAMBIO: MODELOS NUEVOS DISPONIBLES
                 contents=mensaje
             )
