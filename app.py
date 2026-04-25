@@ -50,7 +50,12 @@ if st.button("Procesar mensaje"):
             # CAMBIO: SE USA client.models.generate_content EN VEZ DE model.generate_content
             response = client.models.generate_content(
             model="models/gemini-2.5-flash",   # usa uno de los que viste en la lista
-            contents=mensaje)  
+            contents=f"""
+                        Extrae producto, cantidad y unidad de este inventario:
+                        {mensaje}
+                        Devuélvelo en formato JSON como una lista de objetos, cada uno con claves:
+                        producto, cantidad, unidad.
+                        """)  
 
             # MOSTRAR RESPUESTA DE GEMINI
             st.write("Respuesta de Gemini:")
@@ -62,17 +67,18 @@ if st.button("Procesar mensaje"):
             # MOSTRAR RESPUESTA DE GEMINI
             st.write("Respuesta de Gemini:")
             st.write(response.text)
+            try:
+                datos = json.loads(response.text)
+                for item in datos:
+                    producto = item["producto"]
+                    cantidad = item["cantidad"]
+                    unidad = item["unidad"]
             
             # ACTUALIZACIÓN EN GOOGLE SHEETS
          #=================AQUI ESTA LA CLAVE DEL PROGRAMA ==================================
          #===================================================================================
             # Procesar cada línea del mensaje ingresado
-            lineas = mensaje.split("\n")
-            for linea in lineas:
-                if "=" in linea:
-                    producto, valor = linea.split("=")
-                    producto = producto.strip()
-                    cantidad, unidad = valor.strip().split(" ")
+
             
                     # Buscar fila por producto en la hoja
                     try:
