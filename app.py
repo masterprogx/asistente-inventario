@@ -10,6 +10,15 @@ from oauth2client.service_account import ServiceAccountCredentials
 api_key = st.secrets["gemini_api_key"]
 client = genai.Client(api_key=api_key)   # CAMBIO: SE CREA EL CLIENTE CON LA API KEY
 
+#OBSERVACIONES
+
+# DEBUG: listar modelos disponibles
+for m in client.models.list():
+    st.write(m.name, m.supported_generation_methods)
+
+
+
+
 # LEER EL SERVICE ACCOUNT DESDE SECRETS
 # IMPORTANTE: EN SECRETS DE STREAMLIT DEBE ESTAR gcp_service_account CON EL JSON ENTRE """ """
 creds_info = json.loads(st.secrets["gcp_service_account"])
