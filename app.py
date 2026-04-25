@@ -1,7 +1,7 @@
 # ===================== 1. IMPORTACIONES NECESARIAS ============================
 import streamlit as st              # Librería para crear la interfaz web
 #import google.generativeai as genai # Cliente para usar Gemini (Google Generative AI)
-import google.genai as genai
+import google.genai as genai   #inetntando 
 import gspread                      # Cliente para manipular Google Sheets
 from oauth2client.service_account import ServiceAccountCredentials # Manejo de credenciales
 import pandas as pd                 # Manejo de datos en formato tabla
