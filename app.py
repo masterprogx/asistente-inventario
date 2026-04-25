@@ -66,7 +66,7 @@ if st.button("Procesar mensaje"):
            # sheet.update_cell(1, 1, "Inventario actualizado correctamente")  # DEMO
             try:
                 # PARSEAR RESPUESTA DE GEMINI COMO JSON
-                datos = json.loads(response.text)
+                  datos = json.loads(response.text)
                   for item in datos:
                       producto = item["producto"]
                       cantidad = item["cantidad"]
