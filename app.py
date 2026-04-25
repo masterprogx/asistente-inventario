@@ -23,7 +23,7 @@ creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_info, scope)
 client_gsheets = gspread.authorize(creds)
 
 # ABRIR TU HOJA DE INVENTARIO (REEMPLAZA CON TU ID DE SHEET)
-sheet = client_gsheets.open_by_key("TU_ID_DE_SHEET").sheet1
+sheet =client_gsheets.open_by_key("1XbQDQCIhT4rE3kJypoll61sICjuoH-xmfgOUs2lmq-k").sheet1
 
 # INTERFAZ STREAMLIT
 st.title("Asistente de Inventario con Gemini")
