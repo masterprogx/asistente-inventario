@@ -1,6 +1,7 @@
 # ===================== 1. IMPORTACIONES NECESARIAS ============================
 import streamlit as st              # Librería para crear la interfaz web
-import google.generativeai as genai # Cliente para usar Gemini (Google Generative AI)
+#import google.generativeai as genai # Cliente para usar Gemini (Google Generative AI)
+import google.genai as genai
 import gspread                      # Cliente para manipular Google Sheets
 from oauth2client.service_account import ServiceAccountCredentials # Manejo de credenciales
 import pandas as pd                 # Manejo de datos en formato tabla
@@ -18,7 +19,9 @@ ID_EXCEL = "1XbQDQCIhT4rE3kJypoll61sICjuoH-xmfgOUs2lmq-k"
 
 # Inicializar la IA de Google con la API Key
 genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel('gemini-1.0-pro')
+model = genai.GenerativeModel("gemini-1.5-flash")  # rápido y eficiente
+
+#model = genai.GenerativeModel("gemini-1.5-pro")    # más potente
 st.write("Gemini listo para trabajar")
 
 # ===================== 3. FUNCIÓN DEL AGENTE IA ===============================
