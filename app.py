@@ -67,25 +67,25 @@ if st.button("Procesar mensaje"):
             try:
                 # PARSEAR RESPUESTA DE GEMINI COMO JSON
                 datos = json.loads(response.text)
-                for item in datos:
-                    producto = item["producto"]
-                    cantidad = item["cantidad"]
-                    unidad = item["unidad"]
-            
-                    # ACTUALIZACIÓN EN GOOGLE SHEETS
-                    #=================AQUI ESTA LA CLAVE DEL PROGRAMA ==================================
-                    #===================================================================================
-                    # Buscar fila por producto enla hoja
-       
-                    # Buscar fila por producto en la hoja
-                    try:
-                        cell = sheet.find(producto)
-                        fila = cell.row
-                        sheet.update_cell(fila, 3, cantidad)             # Columna Cantidad
-                        sheet.update_cell(fila, 4, unidad)               # Columna Unidad
-                        sheet.update_cell(fila, 5, "Sin observación")    # Columna Observación
-                    except:
-                        st.write(f"⚠️ Producto {producto} no encontrado en la hoja.")
+                  for item in datos:
+                      producto = item["producto"]
+                      cantidad = item["cantidad"]
+                      unidad = item["unidad"]
+              
+                      # ACTUALIZACIÓN EN GOOGLE SHEETS
+                      #=================AQUI ESTA LA CLAVE DEL PROGRAMA ==================================
+                      #===================================================================================
+                      # Buscar fila por producto enla hoja
+         
+                      # Buscar fila por producto en la hoja
+                      try:
+                          cell = sheet.find(producto)
+                          fila = cell.row
+                          sheet.update_cell(fila, 3, cantidad)             # Columna Cantidad
+                          sheet.update_cell(fila, 4, unidad)               # Columna Unidad
+                          sheet.update_cell(fila, 5, "Sin observación")    # Columna Observación
+                      except:
+                          st.write(f"⚠️ Producto {producto} no encontrado en la hoja.")
                #Mensaje de éxito 
                st.success("Inventario actualizado correctamente ✅")
   #=============================================================================================
